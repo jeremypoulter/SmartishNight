@@ -18,4 +18,4 @@ jobs:
     - uses: nerdyscout/kicad-exports@v2.1
       with:
       # Required - kibot config file
-        config: reports.kibot.yaml
+        config: report.kibot.yaml
