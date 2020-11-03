@@ -4,9 +4,9 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title ""
-Date ""
-Rev ""
+Title "SmartishNight"
+Date "2020-11-03"
+Rev "1"
 Comp ""
 Comment1 ""
 Comment2 ""
