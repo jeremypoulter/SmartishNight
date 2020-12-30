@@ -308,7 +308,7 @@ F 1 "MMBT2222" H 5041 6355 50  0000 L CNN
 F 2 "Package_TO_SOT_SMD:SOT-23" H 5050 6325 50  0001 L CIN
 F 3 "http://www.unisonic.com.tw/datasheet/S8050.pdf" H 4850 6400 50  0001 L CNN
 	1    4850 6400
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 $Comp
 L Device:R R2
@@ -379,9 +379,9 @@ Wire Wire Line
 Text Label 2750 4650 0    50   ~ 0
 GPIO0
 Text Label 2750 4750 0    50   ~ 0
-TX
+TXD0
 Text Label 2750 4950 0    50   ~ 0
-RX
+RXD0
 Wire Wire Line
 	2650 4750 2750 4750
 Wire Wire Line
@@ -666,9 +666,9 @@ F 3 "" H 8550 4500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text Label 10550 4850 0    50   ~ 0
-TX
+RXD0
 Text Label 10550 4950 0    50   ~ 0
-RX
+TXD0
 Wire Wire Line
 	10550 4950 10450 4950
 Wire Wire Line
