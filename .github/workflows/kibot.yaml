@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: nerdyscout/kicad-exports@v2.1
+    - uses: nerdyscout/kicad-exports@v2.2
       with:
       # Required - kibot config file
         config: docs.kibot.yaml
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: nerdyscout/kicad-exports@v2
+    - uses: nerdyscout/kicad-exports@v2.2
       with:
       # Required - kibot config file
         config: gerbers.kibot.yaml
@@ -47,7 +47,7 @@ jobs:
         schema: '*.sch'
       # optional - PCB design file
         board: '*.kicad_pcb'
-    - uses: nerdyscout/kicad-exports@v2
+    - uses: nerdyscout/kicad-exports@v2.2
       with:
       # Required - kibot config file
         config: jlcpcb/bom.kibot.yaml
@@ -57,7 +57,7 @@ jobs:
         schema: '*.sch'
       # optional - PCB design file
         board: '*.kicad_pcb'
-    - uses: nerdyscout/kicad-exports@v2
+    - uses: nerdyscout/kicad-exports@v2.2
       with:
       # Required - kibot config file
         config: jlcpcb/position.kibot.yaml
