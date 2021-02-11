@@ -6,11 +6,13 @@ on:
       - '**.sch'
       - '**.kicad_pcb'
       - '.github/workflows/*'
+      - 'jlcpcb/*'
   pull_request:
     paths:
       - '**.sch'
       - '**.kicad_pcb'
       - '.github/workflows/*'
+      - 'jlcpcb/*'
 
 jobs:
   docs:
