@@ -35,10 +35,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: nerdyscout/kicad-exports@v2.1
+    - uses: nerdyscout/kicad-exports@v2
       with:
       # Required - kibot config file
-        config: fabrications.kibot.yaml
+        config: gerbers.kibot.yaml
+      # optional - prefix to output defined in config
+        dir: gerbers
+      # optional - schematic file
+        schema: '*.sch'
+      # optional - PCB design file
+        board: '*.kicad_pcb'
+    - uses: nerdyscout/kicad-exports@v2
+      with:
+      # Required - kibot config file
+        config: jlcpcb/bom.kibot.yaml
+      # optional - prefix to output defined in config
+        dir: gerbers
+      # optional - schematic file
+        schema: '*.sch'
+      # optional - PCB design file
+        board: '*.kicad_pcb'
+    - uses: nerdyscout/kicad-exports@v2
+      with:
+      # Required - kibot config file
+        config: jlcpcb/position.kibot.yaml
       # optional - prefix to output defined in config
         dir: gerbers
       # optional - schematic file
