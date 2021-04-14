@@ -1,4 +1,4 @@
-name: docs
+name: Fabrication
 
 on:
   push:
@@ -14,21 +14,22 @@ on:
       - '.github/workflows/*'
       - 'jlcpcb/*'
 
+env:
+  KIKIT: docker run --rm -v $PWD:/pcb -w /pcb --user $UID:$GROUPS yaqwsx/kikit kikit
+
 jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
     - uses: nerdyscout/kicad-exports@v2.2
       with:
-      # Required - kibot config file
         config: docs.kibot.yaml
-      # optional - prefix to output defined in config
         dir: docs
-      # optional - schematic file
-        schema: '*.sch'
-      # optional - PCB design file
-        board: '*.kicad_pcb'
+        schema: NightLight_ESP32.sch
+        board: NightLight_ESP32.kicad_pcb
+
     - name: upload results
       uses: actions/upload-artifact@v2
       with:
@@ -36,41 +37,20 @@ jobs:
         path: docs
 
   fabrications:
+    name: Fabrication
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: nerdyscout/kicad-exports@v2.2
-      with:
-      # Required - kibot config file
-        config: gerbers.kibot.yaml
-      # optional - prefix to output defined in config
-        dir: gerbers
-      # optional - schematic file
-        schema: '*.sch'
-      # optional - PCB design file
-        board: '*.kicad_pcb'
-    - uses: nerdyscout/kicad-exports@v2.2
-      with:
-      # Required - kibot config file
-        config: jlcpcb/bom.kibot.yaml
-      # optional - prefix to output defined in config
-        dir: gerbers
-      # optional - schematic file
-        schema: '*.sch'
-      # optional - PCB design file
-        board: '*.kicad_pcb'
-    - uses: nerdyscout/kicad-exports@v2.2
-      with:
-      # Required - kibot config file
-        config: jlcpcb/position.kibot.yaml
-      # optional - prefix to output defined in config
-        dir: gerbers
-      # optional - schematic file
-        schema: '*.sch'
-      # optional - PCB design file
-        board: '*.kicad_pcb'
+
+    - name: Export JLCPCB fabrication files
+      run: |
+        ${{ env.KIKIT }} fab jlcpcb --assembly --schematic NightLight_ESP32.sch --ignore J2,JP1 NightLight_ESP32.kicad_pcb SmartishLight_ESP32
+        mv SmartishLight_ESP32/gerbers.zip SmartishLight_ESP32/SmartishLight_ESP32_${{ github.run_number }}.zip
+
     - name: upload results
       uses: actions/upload-artifact@v2
       with:
-        name: gerbers
-        path: gerbers
+        name: SmartishLight_ESP32
+        path: |
+          SmartishLight_ESP32/*.zip
+          SmartishLight_ESP32/*.csv
