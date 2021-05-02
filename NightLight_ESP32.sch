@@ -910,6 +910,7 @@ F 1 "CH340C" H 10550 3950 50  0000 C CNN
 F 2 "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" H 10300 4150 50  0001 L CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Jiangsu-Qin-Heng-CH340C_C84681.pdf" H 9900 5500 50  0001 C CNN
 F 4 "C84681" H 10250 4700 50  0001 C CNN "LCSC"
+F 5 "0;0;90" H 10250 4700 50  0001 C CNN "JLCPCB_CORRECTION"
 	1    10250 4700
 	1    0    0    -1  
 $EndComp
@@ -935,6 +936,7 @@ F 0 "R5" H 8470 4796 50  0000 L CNN
 F 1 "5K1" H 8470 4705 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric" V 8330 4750 50  0001 C CNN
 F 3 "~" H 8400 4750 50  0001 C CNN
+F 4 "C139928" H 8400 4750 50  0001 C CNN "LCSC"
 	1    8400 4750
 	1    0    0    -1  
 $EndComp
@@ -994,6 +996,7 @@ F 1 "USB_C_Receptacle_USB2.0" H 7407 5576 50  0000 C CNN
 F 2 "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12" H 7450 4800 50  0001 C CNN
 F 3 "https://www.usb.org/sites/default/files/documents/usb_type-c.zip" H 7450 4800 50  0001 C CNN
 F 4 "C165948" H 7300 4800 50  0001 C CNN "LCSC"
+F 5 "1.8;-0.3;180" H 7300 4800 50  0001 C CNN "JLCPCB_CORRECTION"
 	1    7300 4800
 	1    0    0    -1  
 $EndComp
