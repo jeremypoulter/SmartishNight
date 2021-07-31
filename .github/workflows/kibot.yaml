@@ -47,6 +47,11 @@ jobs:
         ${{ env.KIKIT }} fab jlcpcb --assembly --schematic NightLight_ESP32.sch --ignore J2,JP1 NightLight_ESP32.kicad_pcb SmartishLight_ESP32
         mv SmartishLight_ESP32/gerbers.zip SmartishLight_ESP32/SmartishLight_ESP32_${{ github.run_number }}.zip
 
+    - name: Export JLCPCB fabrication files (tall)
+      run: |
+        ${{ env.KIKIT }} fab jlcpcb --assembly --schematic NightLight_ESP32.sch --ignore J2,JP1 NightLight_ESP32_tall.kicad_pcb SmartishLight_ESP32_tall
+        mv SmartishLight_ESP32_tall/gerbers.zip SmartishLight_ESP32_tall/SmartishLight_ESP32_tall_${{ github.run_number }}.zip
+
     - name: upload results
       uses: actions/upload-artifact@v2
       with:
@@ -54,3 +59,5 @@ jobs:
         path: |
           SmartishLight_ESP32/*.zip
           SmartishLight_ESP32/*.csv
+          SmartishLight_ESP32_tall/*.zip
+          SmartishLight_ESP32_tall/*.csv
