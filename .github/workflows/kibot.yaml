@@ -123,7 +123,7 @@ jobs:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
         files: |
-          artifacts/**/*.zip
-          artifacts/**/*.csv
-          artifacts/**/*.pdf
+          artifacts/*.zip
+          artifacts/*.csv
+          artifacts/*.pdf
 
