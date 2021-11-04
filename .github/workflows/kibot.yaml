@@ -106,7 +106,9 @@ jobs:
         do
           for l in gerbers.zip bom.csv pos.csv
           do
-            mv artifacts/$i/$l artifacts/$i-$l-$version.zip
+            name=$(cut -d'.' -f1 <<< $j)
+            ext=$(cut -d'.' -f2 <<< $j)
+            mv artifacts/$i/$l artifacts/$i-$name-$version.$ext
           done
           rm -rf artifacts/$i
         done
