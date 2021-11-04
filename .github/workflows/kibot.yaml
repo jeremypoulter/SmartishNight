@@ -102,20 +102,20 @@ jobs:
       run: |
         find artifacts
         version=${GITHUB_REF_NAME}
-        for i in SmartishLight_ESP32 SmartishLight_ESP32_tall
+        for asset in SmartishLight_ESP32 SmartishLight_ESP32_tall
         do
-          for l in gerbers.zip bom.csv pos.csv
+          for file in gerbers.zip bom.csv pos.csv
           do
-            name=$(cut -d'.' -f1 <<< $j)
-            ext=$(cut -d'.' -f2 <<< $j)
-            mv artifacts/$i/$l artifacts/$i-$name-$version.$ext
+            name=$(cut -d'.' -f1 <<< $file)
+            ext=$(cut -d'.' -f2 <<< $file)
+            mv artifacts/$asset/$file artifacts/$asset-$name-$version.$ext
           done
-          rm -rf artifacts/$i
+          rm -rf artifacts/$asset
         done
         mv artifacts/SmartishLight_ESP32-docs/docs/NightLight_ESP32-schematic.pdf artifacts/SmartishLight_ESP32-schematic-$version.pdf
-        for i in SmartishLight_ESP32-docs SmartishLight_ESP32_tall-docs
+        for asset in SmartishLight_ESP32-docs SmartishLight_ESP32_tall-docs
         do
-          rm -rf artifacts/$i
+          rm -rf artifacts/$asset
         done
         find artifacts
 
