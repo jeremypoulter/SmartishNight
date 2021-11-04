@@ -2,6 +2,8 @@ name: Fabrication
 
 on:
   push:
+    branches:
+      - main
     paths:
       - '**.sch'
       - '**.kicad_pcb'
@@ -61,3 +63,31 @@ jobs:
           SmartishLight_ESP32/*.csv
           SmartishLight_ESP32_tall/*.zip
           SmartishLight_ESP32_tall/*.csv
+
+  release:
+    runs-on: ubuntu-latest
+    needs: 
+      - docs
+      - fabrications
+
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Download the built assets
+      uses: actions/download-artifact@v2
+      with:
+        path: artifacts
+
+    - name: Package up the combined assets
+      run: |
+        ls -l artifacts
+
+    - name: Upload assets to latest release
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "Development Build"
+        files: |
+          artifacts/*
