@@ -90,7 +90,7 @@ jobs:
       - docs
       - fabrications
 
-    if: github.ref == 'refs/heads/main'
+    if: startsWith(github.ref, 'refs/tags/v')
 
     steps:
     - name: Download the built assets
@@ -100,6 +100,21 @@ jobs:
 
     - name: Package up the combined assets
       run: |
+        find artifacts
+        version=${GITHUB_REF_NAME}
+        for i in SmartishLight_ESP32 SmartishLight_ESP32_tall
+        do
+          for l in gerbers.zip bom.csv pos.csv
+          do
+            mv artifacts/$i/$l artifacts/$i-$l-$version.zip
+          done
+          rm -rf artifacts/$i
+        done
+        mv artifacts/SmartishLight_ESP32-docs/docs/NightLight_ESP32-schematic.pdf artifacts/SmartishLight_ESP32-schematic-$version.pdf
+        for i in SmartishLight_ESP32-docs SmartishLight_ESP32_tall-docs
+        do
+          rm -rf artifacts/$i
+        done
         find artifacts
 
     - name: Upload assets to latest release
