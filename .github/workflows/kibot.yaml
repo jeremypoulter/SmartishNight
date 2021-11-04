@@ -78,10 +78,6 @@ jobs:
       with:
         path: artifacts
 
-    - name: Package up the combined assets
-      run: |
-        ls -l artifacts
-
     - name: Upload assets to latest release
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
@@ -90,4 +86,7 @@ jobs:
         prerelease: true
         title: "Development Build"
         files: |
-          artifacts/*
+          artifacts/**/*.zip
+          artifacts/**/*.csv
+          artifacts/**/*.pdf
+
