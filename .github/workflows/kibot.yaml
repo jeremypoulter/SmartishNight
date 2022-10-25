@@ -7,13 +7,13 @@ on:
     tags:
       - v*
     paths:
-      - '**.sch'
+      - '**.kicad_sch'
       - '**.kicad_pcb'
       - '.github/workflows/*'
       - 'jlcpcb/*'
   pull_request:
     paths:
-      - '**.sch'
+      - '**.kicad_sch'
       - '**.kicad_pcb'
       - '.github/workflows/*'
       - 'jlcpcb/*'
@@ -33,10 +33,10 @@ jobs:
       matrix:
         include:
           - name: SmartishLight_ESP32
-            schematic: NightLight_ESP32.sch
+            schematic: NightLight_ESP32.kicad_sch
             board: NightLight_ESP32.kicad_pcb
           - name: SmartishLight_ESP32_tall
-            schematic: NightLight_ESP32.sch
+            schematic: NightLight_ESP32.kicad_sch
             board: NightLight_ESP32_tall.kicad_pcb
 
     steps:
@@ -45,7 +45,7 @@ jobs:
       - uses: INTI-CMNB/KiBot@v2_k6
         with:
           install3D: YES
-          schema: ${{ matrix.schematic }}
+          schema: ${{ matrix.kicad_schematic }}
           board: ${{ matrix.board }}
           config: ${{ env.config }}
           dir: ${{ env.dir }}
@@ -72,10 +72,10 @@ jobs:
       matrix:
         include:
           - name: SmartishLight_ESP32
-            schematic: NightLight_ESP32.sch
+            schematic: NightLight_ESP32.kicad_sch
             board: NightLight_ESP32.kicad_pcb
           - name: SmartishLight_ESP32_tall
-            schematic: NightLight_ESP32.sch
+            schematic: NightLight_ESP32.kicad_sch
             board: NightLight_ESP32_tall.kicad_pcb
 
     steps:
@@ -83,7 +83,7 @@ jobs:
 
       - name: Export JLCPCB fabrication files
         run: |
-          ${{ env.KIKIT }} fab jlcpcb --assembly --schematic ${{ matrix.schematic }} --ignore J2,JP1 ${{ matrix.board }} ${{ matrix.name }}
+          ${{ env.KIKIT }} fab jlcpcb --assembly --schematic ${{ matrix.kicad_schematic }} --ignore J2,JP1 ${{ matrix.board }} ${{ matrix.name }}
 
       - name: upload results
         uses: actions/upload-artifact@v2
